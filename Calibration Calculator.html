@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Temp Calculator for 7900</title>
+</head>
+<body>
+
+<center><h2>Temp Calculator for 7900</h2></center>
+<center><p>Cal.</p></center>
+
+<center><from>
+    <br><br>
+    <label for="ms">Slope (before calib):</label>
+    <input type="text" id="ms" name="ms" height="24"><br><br>
+    <label for="ms1">Offset (before calib):</label>
+    <input type="text" id="ms1" name="ms1" height="24"><br><br>
+    <label for="ms2">85 (before calib):</label>
+    <input type="text" id="ms2" name="ms2" height="24"><br><br>
+    <label for="ms3">45 (before calib):</label>
+    <input type="text" id="ms3" name="ms3" height="24"><br><br>
+    <!--<input type="button" onclick="myfunction()" value = "Submit">-->
+    <br><br>
+    <!--<input type="text" id='demo' name='demo'>-->
+    <output type="text" id='demo' name='demo'></output>
+
+</from></center>
+
+<script>
+    // //check if touchevent is available <p id='demo'></p>
+    // let touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+    // //bind touch event to the button with id = myfunction and call myfunction function
+    // document.getElementById('myfunctionBtn').addEventListener(touchEvent, myfunction);
+    
+    function myfunction() { 
+        var Slope_before = document.getElementById('ms').value;
+        var Offset_before = document.getElementById('ms1').value;
+        var before85 = document.getElementById('ms2').value;
+        var before45 = document.getElementById('ms3').value;
+            var calculator = decryption(Slope_before,Offset_before,before85,before45);
+            document.getElementById('demo').value = calculator[0];
+    }
+    function decryption(Slope_before,Offset_before,before85,before45){
+        var Final_Slope = '';
+        var Final_Offset = '';
+
+            Final_Slope = Slope_before*(before85-before45)/40;
+            Final_Offset = Offset_before*(before85-before45)/40+(85*before45-45*before85)/(before85-before45)
+        return[Final_Slope,Final_Offset];
+    }
+
+</script>
+</body>
+</html>
